@@ -5,19 +5,16 @@
 //  Created by Ian Howe on 2/20/16.
 //  Copyright © 2016 Ian Howe. All rights reserved.
 //
-
 import UIKit
 
 class GameplayController: UIViewController {
 
-    
     @IBOutlet var cellOutlets: [UIView]!
     @IBOutlet var imageViews: [UIImageView]!
     @IBOutlet weak var playerOneImage: UIImageView!
     @IBOutlet weak var playerTwoImage: UIImageView!
     @IBOutlet weak var playerOneName: UILabel!
     @IBOutlet weak var playerTwoName: UILabel!
-    
     @IBOutlet weak var tileOneView: UIView!
     @IBOutlet weak var tileTwoView: UIView!
 
@@ -35,23 +32,19 @@ class GameplayController: UIViewController {
         playerTwoName.text = playerNames[1]
         tileStartingFrames[0] = tileOneView.frame
         tileStartingFrames[1] = tileTwoView.frame
-        
-        
-        
         chooseStartingPlayer()
     }
-    
+
     @IBAction func tileMoved(sender: UIPanGestureRecognizer) {
         if(sender.view!.tag == 0 && playerOneTurn || sender.view!.tag == 1 && !playerOneTurn) {
             let point = sender.locationInView(view)
             sender.view?.center = CGPointMake(point.x, point.y)
-            
             if sender.state == UIGestureRecognizerState.Ended {
                 for cellView in cellOutlets {
                     let cellFrame = cellView.frame
                     let newCenter = CGPoint(x: ((sender.view?.center.x)! - 150), y: ((sender.view?.center.y)! - 150))
                     if cellFrame.contains(newCenter) {
-                        print("Tile stopped pan at Cell #\(cellView.tag + 1)")
+                        print("Tile stopped pan at Cell #\(cellView.tag + 1)") /*DEBUG*/
                         processTurn(cellView.tag)
                     }
                 }
@@ -59,12 +52,11 @@ class GameplayController: UIViewController {
         }
     }
 
-    
-    
     @IBAction func cellTapped(sender: UITapGestureRecognizer) {
         processTurn(sender.view!.tag)
     }
-        //Randomly chooses a player to start the game
+    
+    //Randomly chooses a player to start the game
     func chooseStartingPlayer() {
         let randomNumber = Int(arc4random_uniform(2))
         if randomNumber == 0 {
@@ -74,7 +66,6 @@ class GameplayController: UIViewController {
             if(cpuPlayer[0]) {
                 cpuMove(1)
             }
-            
         }
         else {
             playerOneTurn = false
@@ -87,9 +78,7 @@ class GameplayController: UIViewController {
     }
     //Places image in cell and changes turns
     func processTurn(cell: Int) {
-        
         print("Cell #\(cell + 1) chosen") /* DEBUG */
-        
         if cellStatus[cell] == 0 {
             if playerOneTurn {
                 cellStatus[cell] = 1
@@ -123,6 +112,7 @@ class GameplayController: UIViewController {
             }
         }
     }
+    
     //Checks to see if a winning move has been made on the board
     func checkForWinner() -> Bool {
         var noWinner = true
@@ -155,6 +145,7 @@ class GameplayController: UIViewController {
         }
         return false
     }
+    
     //Creates an AlertController at the end of the game
     func createAlert(winner: Int) {
         var alertController = UIAlertController()
@@ -214,7 +205,6 @@ class GameplayController: UIViewController {
         //Basic algorithm, chooses a random open spot
         if cpuDifficulty[player - 1] >= 0 {
             print("Calculating basic move...") /*DEBUG*/
-            var emptyCheck = true
             var randomNumber = 0
             var emptyCells = [Int]()
             var counter = 0
@@ -224,8 +214,7 @@ class GameplayController: UIViewController {
                 }
                 counter++
             }
-            print(emptyCells)
-            
+            print(emptyCells)  /*DEBUG*/
             randomNumber = Int(arc4random_uniform(UInt32(emptyCells.count)))
             if emptyCells.count != 0 {
                 processTurn(emptyCells[randomNumber])
@@ -233,15 +222,6 @@ class GameplayController: UIViewController {
             else {
                 createAlert(0)
             }
-//            while(emptyCheck) {
-//                randomNumber = Int(arc4random_uniform(9))
-//                print("Cell #\(randomNumber + 1) considered") /*DEBUG*/
-//                if cellStatus[randomNumber] == 0 {
-//                    emptyCheck = false
-//                }
-//            }
-//            processTurn(randomNumber)
-            
         }
     }
 }

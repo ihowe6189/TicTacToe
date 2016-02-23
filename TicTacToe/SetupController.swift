@@ -5,7 +5,6 @@
 //  Created by Ian Howe on 2/22/16.
 //  Copyright © 2016 Ian Howe. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -33,7 +32,6 @@ class SetupController: UIViewController {
             gameplayController.cpuDifficulty = cpuDifficulty
             gameplayController.playerNames = playerNames
         }
-        
     }
     @IBAction func textFieldEditingChanged(sender: UITextField) {
         playerNames[sender.tag] = sender.text!
@@ -59,10 +57,5 @@ class SetupController: UIViewController {
     }
     @IBAction func segmentedControllerValueChanged(sender: UISegmentedControl) {
         cpuDifficulty[sender.tag] = sender.selectedSegmentIndex
-        
     }
-    
-    
-
-    
 }
