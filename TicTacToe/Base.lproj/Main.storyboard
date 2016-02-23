@@ -117,6 +117,9 @@
                                     <segment title="Basic"/>
                                     <segment title="Smart"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControllerValueChanged:" destination="K7O-Rb-cFi" eventType="valueChanged" id="oFh-OA-DLo"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,7 +173,7 @@
                                     <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="faN-vl-Pan" userLabel="cellTwo">
                                         <rect key="frame" x="112" y="21" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="498-As-Pz4" userLabel="cellTwoImage">
+                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="498-As-Pz4" userLabel="cellTwoImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -184,7 +187,7 @@
                                     <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z4Z-0S-3fU" userLabel="cellThree">
                                         <rect key="frame" x="208" y="21" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06T-8X-WFM" userLabel="cellThreeImage">
+                                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06T-8X-WFM" userLabel="cellThreeImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -198,7 +201,7 @@
                                     <view tag="3" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vP7-p9-lib" userLabel="cellFour">
                                         <rect key="frame" x="16" y="115" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0XK-9p-3At" userLabel="cellFourImage">
+                                            <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0XK-9p-3At" userLabel="cellFourImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -212,7 +215,7 @@
                                     <view tag="4" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dG-CN-cKB" userLabel="cellFive">
                                         <rect key="frame" x="112" y="115" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2L-lb-9XK" userLabel="cellFiveImage">
+                                            <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2L-lb-9XK" userLabel="cellFiveImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -226,7 +229,7 @@
                                     <view tag="5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-8e-OLP" userLabel="cellSix">
                                         <rect key="frame" x="208" y="115" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFu-kH-aLJ" userLabel="cellSixImage">
+                                            <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFu-kH-aLJ" userLabel="cellSixImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -240,7 +243,7 @@
                                     <view tag="6" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftG-V7-J5o" userLabel="cellSeven">
                                         <rect key="frame" x="16" y="211" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg9-C3-qux" userLabel="cellSevenImage">
+                                            <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg9-C3-qux" userLabel="cellSevenImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -254,7 +257,7 @@
                                     <view tag="7" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-2k-mzM" userLabel="cellEight">
                                         <rect key="frame" x="112" y="211" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8p-0Z-AD8" userLabel="cellEightImage">
+                                            <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W8p-0Z-AD8" userLabel="cellEightImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -268,7 +271,7 @@
                                     <view tag="8" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ych-pM-93k" userLabel="cellNine">
                                         <rect key="frame" x="208" y="211" width="74" height="74"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEN-zT-kJV" userLabel="cellNineImage">
+                                            <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEN-zT-kJV" userLabel="cellNineImage">
                                                 <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -283,19 +286,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xx-Cp-Ny9" userLabel="playerOneSelected">
-                                <rect key="frame" x="154" y="92" width="100" height="50"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DjW-xG-fpb" userLabel="playerTwoSelected">
-                                <rect key="frame" x="346" y="92" width="100" height="50"/>
+                                <rect key="frame" x="42" y="180" width="100" height="50"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKi-L3-Pfz">
-                                <rect key="frame" x="171" y="106" width="67" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-Um-Bt5">
-                                <rect key="frame" x="363" y="106" width="67" height="21"/>
+                                <rect key="frame" x="59" y="194" width="67" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -307,6 +301,43 @@
                                     <segue destination="K7O-Rb-cFi" kind="show" identifier="gameplayToSetup" id="SdD-4O-mQl"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3J-v4-Gv3" userLabel="tileOne">
+                                <rect key="frame" x="55" y="263" width="74" height="74"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CatImage" translatesAutoresizingMaskIntoConstraints="NO" id="mix-uP-Jts" userLabel="tileOneImage">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="34v-NA-ezB" appends="YES" id="crq-CY-BGZ"/>
+                                </connections>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mju-Sr-gJ4" userLabel="tileTwo">
+                                <rect key="frame" x="471" y="263" width="74" height="74"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DogImage" translatesAutoresizingMaskIntoConstraints="NO" id="DfW-I0-dZZ" userLabel="tileTwoImage">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pdo-FP-R4W" appends="YES" id="Hfq-cB-NeL"/>
+                                </connections>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DjW-xG-fpb" userLabel="playerTwoSelected">
+                                <rect key="frame" x="463" y="180" width="100" height="50"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-Um-Bt5">
+                                <rect key="frame" x="480" y="194" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -315,6 +346,8 @@
                         <outlet property="playerOneName" destination="MKi-L3-Pfz" id="3rA-LZ-AHm"/>
                         <outlet property="playerTwoImage" destination="DjW-xG-fpb" id="m2Y-Bb-YRe"/>
                         <outlet property="playerTwoName" destination="Qr7-Um-Bt5" id="44k-XF-CKs"/>
+                        <outlet property="tileOneView" destination="t3J-v4-Gv3" id="zjN-sG-HKa"/>
+                        <outlet property="tileTwoView" destination="Mju-Sr-gJ4" id="w0H-4Q-z3c"/>
                         <outletCollection property="imageViews" destination="jda-VK-2ce" collectionClass="NSMutableArray" id="mMQ-WK-EGc"/>
                         <outletCollection property="imageViews" destination="y2L-lb-9XK" collectionClass="NSMutableArray" id="DTC-zc-hHl"/>
                         <outletCollection property="imageViews" destination="498-As-Pz4" collectionClass="NSMutableArray" id="i1E-o0-u2B"/>
@@ -324,6 +357,15 @@
                         <outletCollection property="imageViews" destination="tg9-C3-qux" collectionClass="NSMutableArray" id="hlV-si-2Lp"/>
                         <outletCollection property="imageViews" destination="W8p-0Z-AD8" collectionClass="NSMutableArray" id="oSZ-ku-Ich"/>
                         <outletCollection property="imageViews" destination="ZEN-zT-kJV" collectionClass="NSMutableArray" id="G2r-N5-J8f"/>
+                        <outletCollection property="cellOutlets" destination="5kj-qy-KEq" collectionClass="NSMutableArray" id="eu5-Jg-tOe"/>
+                        <outletCollection property="cellOutlets" destination="faN-vl-Pan" collectionClass="NSMutableArray" id="AU4-vx-qIO"/>
+                        <outletCollection property="cellOutlets" destination="z4Z-0S-3fU" collectionClass="NSMutableArray" id="C6N-Ge-ZfK"/>
+                        <outletCollection property="cellOutlets" destination="vP7-p9-lib" collectionClass="NSMutableArray" id="HiJ-68-Arz"/>
+                        <outletCollection property="cellOutlets" destination="7dG-CN-cKB" collectionClass="NSMutableArray" id="35A-Sm-Vc6"/>
+                        <outletCollection property="cellOutlets" destination="RsP-8e-OLP" collectionClass="NSMutableArray" id="vk9-ql-0cg"/>
+                        <outletCollection property="cellOutlets" destination="ftG-V7-J5o" collectionClass="NSMutableArray" id="dca-HE-qhB"/>
+                        <outletCollection property="cellOutlets" destination="Nje-2k-mzM" collectionClass="NSMutableArray" id="CMf-Ay-QBg"/>
+                        <outletCollection property="cellOutlets" destination="Ych-pM-93k" collectionClass="NSMutableArray" id="for-J1-qre"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -372,6 +414,16 @@
                         <action selector="cellTapped:" destination="BYZ-38-t0r" id="A9n-Pk-nqA"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="34v-NA-ezB" userLabel="tileOneRecognizer">
+                    <connections>
+                        <action selector="tileMoved:" destination="BYZ-38-t0r" id="wRO-cP-UkF"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="pdo-FP-R4W" userLabel="tileTwoRecognizer">
+                    <connections>
+                        <action selector="tileMoved:" destination="BYZ-38-t0r" id="TGg-x8-uoi"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1245" y="386"/>
         </scene>
@@ -395,6 +447,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CatImage" width="150" height="150"/>
+        <image name="DogImage" width="150" height="150"/>
         <image name="GameBoard" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>

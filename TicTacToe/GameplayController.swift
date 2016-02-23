@@ -10,12 +10,16 @@ import UIKit
 
 class GameplayController: UIViewController {
 
+    
+    @IBOutlet var cellOutlets: [UIView]!
     @IBOutlet var imageViews: [UIImageView]!
     @IBOutlet weak var playerOneImage: UIImageView!
     @IBOutlet weak var playerTwoImage: UIImageView!
     @IBOutlet weak var playerOneName: UILabel!
     @IBOutlet weak var playerTwoName: UILabel!
     
+    @IBOutlet weak var tileOneView: UIView!
+    @IBOutlet weak var tileTwoView: UIView!
 
     let winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     var cellStatus = [0,0,0,0,0,0,0,0,0]
@@ -23,14 +27,40 @@ class GameplayController: UIViewController {
     var cpuPlayer = [false,false]
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]
+    var tileStartingFrames = [CGRect(),CGRect()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         playerOneName.text = playerNames[0]
         playerTwoName.text = playerNames[1]
+        tileStartingFrames[0] = tileOneView.frame
+        tileStartingFrames[1] = tileTwoView.frame
+        
+        
         
         chooseStartingPlayer()
     }
+    
+    @IBAction func tileMoved(sender: UIPanGestureRecognizer) {
+        if(sender.view!.tag == 0 && playerOneTurn || sender.view!.tag == 1 && !playerOneTurn) {
+            let point = sender.locationInView(view)
+            sender.view?.center = CGPointMake(point.x, point.y)
+            
+            if sender.state == UIGestureRecognizerState.Ended {
+                for cellView in cellOutlets {
+                    let cellFrame = cellView.frame
+                    let newCenter = CGPoint(x: ((sender.view?.center.x)! - 150), y: ((sender.view?.center.y)! - 150))
+                    if cellFrame.contains(newCenter) {
+                        print("Tile stopped pan at Cell #\(cellView.tag + 1)")
+                        processTurn(cellView.tag)
+                    }
+                }
+            }
+        }
+    }
+
+    
+    
     @IBAction func cellTapped(sender: UITapGestureRecognizer) {
         processTurn(sender.view!.tag)
     }
@@ -58,12 +88,16 @@ class GameplayController: UIViewController {
     //Places image in cell and changes turns
     func processTurn(cell: Int) {
         
-        print("Cell #\(cell + 1) tapped") /* DEBUG */
+        print("Cell #\(cell + 1) chosen") /* DEBUG */
         
         if cellStatus[cell] == 0 {
             if playerOneTurn {
                 cellStatus[cell] = 1
-                imageViews[cell].image = UIImage(named: "CatImage.png")
+                for image in imageViews {
+                    if image.tag == cell {
+                        image.image = UIImage(named: "CatImage.png")
+                    }
+                }
                 playerTwoImage.image = UIImage(named: "selectedPlayer.png")
                 playerOneImage.image = nil
                 playerOneTurn = false
@@ -74,7 +108,11 @@ class GameplayController: UIViewController {
             }
             else {
                 cellStatus[cell] = 2
-                imageViews[cell].image = UIImage(named: "DogImage.png")
+                for image in imageViews {
+                    if image.tag == cell {
+                        image.image = UIImage(named: "DogImage.png")
+                    }
+                }
                 playerOneImage.image = UIImage(named: "selectedPlayer.png")
                 playerTwoImage.image = nil
                 playerOneTurn = true
@@ -135,8 +173,8 @@ class GameplayController: UIViewController {
             {
                 (action) -> Void in
                 self.cellStatus = [0,0,0,0,0,0,0,0,0]
-                for var i = 0; i < self.imageViews.count; i++ {
-                    self.imageViews[i].image = nil
+                for image in self.imageViews {
+                    image.image = nil
                 }
                 self.chooseStartingPlayer()
         })
