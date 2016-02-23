@@ -216,14 +216,31 @@ class GameplayController: UIViewController {
             print("Calculating basic move...") /*DEBUG*/
             var emptyCheck = true
             var randomNumber = 0
-            while(emptyCheck) {
-                randomNumber = Int(arc4random_uniform(9))
-                print("Cell #\(randomNumber + 1) considered") /*DEBUG*/
-                if cellStatus[randomNumber] == 0 {
-                    emptyCheck = false
+            var emptyCells = [Int]()
+            var counter = 0
+            for value in cellStatus {
+                if value == 0 {
+                    emptyCells.append(counter)
                 }
+                counter++
             }
-            processTurn(randomNumber)
+            print(emptyCells)
+            
+            randomNumber = Int(arc4random_uniform(UInt32(emptyCells.count)))
+            if emptyCells.count != 0 {
+                processTurn(emptyCells[randomNumber])
+            }
+            else {
+                createAlert(0)
+            }
+//            while(emptyCheck) {
+//                randomNumber = Int(arc4random_uniform(9))
+//                print("Cell #\(randomNumber + 1) considered") /*DEBUG*/
+//                if cellStatus[randomNumber] == 0 {
+//                    emptyCheck = false
+//                }
+//            }
+//            processTurn(randomNumber)
             
         }
     }
