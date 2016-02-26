@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="C7h-8k-r8d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="C7h-8k-r8d">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -29,16 +29,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tp3-mZ-fz9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tp3-mZ-fz9">
                                 <rect key="frame" x="143" y="241" width="97" height="30"/>
+                                <color key="textColor" red="0.75686274509999996" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldEditingChanged:" destination="K7O-Rb-cFi" eventType="editingChanged" id="WPs-dQ-LBr"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-GS-U3u">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBo-GS-U3u">
                                 <rect key="frame" x="361" y="241" width="97" height="30"/>
+                                <color key="textColor" red="0.076240493369999995" green="0.23686210529999999" blue="0.47907034500000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -59,6 +61,7 @@
                             </label>
                             <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0b6-Op-BNT">
                                 <rect key="frame" x="388" y="307" width="51" height="31"/>
+                                <color key="onTintColor" red="0.16078431372549021" green="0.49019607843137253" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="K7O-Rb-cFi" eventType="valueChanged" id="oyI-k3-0ud"/>
                                 </connections>
@@ -71,14 +74,19 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1t-Vh-9XB">
                                 <rect key="frame" x="248" y="471" width="103" height="41"/>
+                                <color key="backgroundColor" red="1" green="0.66308949094326286" blue="0.63738912909742873" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="BEGIN"/>
+                                <state key="normal" title="BEGIN">
+                                    <color key="titleColor" red="0.3843137254901961" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.10150331439393945" green="0.0018818707997462032" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="setupToGameplay" id="cyW-LR-5hW"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mba-5h-EfQ">
                                 <rect key="frame" x="167" y="307" width="51" height="31"/>
+                                <color key="onTintColor" red="1" green="0.17452887227184555" blue="0.19307290615911177" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="K7O-Rb-cFi" eventType="valueChanged" id="g9V-1T-BfG"/>
                                 </connections>
@@ -107,6 +115,7 @@
                                     <segment title="Basic"/>
                                     <segment title="Smart"/>
                                 </segments>
+                                <color key="tintColor" red="1" green="0.17452887227184555" blue="0.19307290615911177" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="segmentedControllerValueChanged:" destination="K7O-Rb-cFi" eventType="valueChanged" id="Rz0-Kl-KKp"/>
                                 </connections>

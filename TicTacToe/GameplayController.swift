@@ -5,6 +5,11 @@
 //  Created by Ian Howe on 2/20/16.
 //  Copyright © 2016 Ian Howe. All rights reserved.
 //
+//
+//
+//
+//
+//
 import UIKit
 
 class GameplayController: UIViewController {
@@ -78,7 +83,6 @@ class GameplayController: UIViewController {
     }
     //Places image in cell and changes turns
     func processTurn(cell: Int) {
-        print("Cell #\(cell + 1) chosen") /* DEBUG */
         if cellStatus[cell] == 0 {
             if playerOneTurn {
                 cellStatus[cell] = 1
@@ -87,6 +91,7 @@ class GameplayController: UIViewController {
                         image.image = UIImage(named: "CatImage.png")
                     }
                 }
+                print("\(playerNames[0]) chose Cell #\(cell + 1)") /* DEBUG */
                 playerTwoImage.image = UIImage(named: "selectedPlayer.png")
                 playerOneImage.image = nil
                 playerOneTurn = false
@@ -102,6 +107,7 @@ class GameplayController: UIViewController {
                         image.image = UIImage(named: "DogImage.png")
                     }
                 }
+                print("\(playerNames[1]) chose Cell #\(cell + 1)") /* DEBUG */
                 playerOneImage.image = UIImage(named: "selectedPlayer.png")
                 playerTwoImage.image = nil
                 playerOneTurn = true
@@ -176,6 +182,7 @@ class GameplayController: UIViewController {
     }
     //Computes the move for the cpu
     func cpuMove(player: Int) {
+        var moveNotMade = true
         //Smart algorithm, chooses a location that would prevent the opponent from winning
         if cpuDifficulty[player - 1] >= 1 {
             print("Calculating smart move...") /*DEBUG*/
@@ -187,23 +194,35 @@ class GameplayController: UIViewController {
                 opponent = 1
             }
             for combo in winningCombos {
+                var sum = 0
                 var oppSum = 0
-                var targetCell = 0
+                var targetCell = -1
                 for cell in combo {
-                    if cellStatus[cell] == opponent {
+                    if cellStatus[cell] == player {
+                        sum++
+                    }
+                    else if cellStatus[cell] == opponent {
                         oppSum++
                     }
                     else if cellStatus[cell] == 0 {
                         targetCell = cell
                     }
                 }
-                if oppSum == 2 && targetCell == 0{
+                if sum == 2 && targetCell != -1{
+                    moveNotMade = false
                     processTurn(targetCell)
+                }
+                else if oppSum == 2 && targetCell != -1{
+                    moveNotMade = false
+                    processTurn(targetCell)
+                }
+                if !moveNotMade {
+                    break
                 }
             }
         }
         //Basic algorithm, chooses a random open spot
-        if cpuDifficulty[player - 1] >= 0 {
+        if cpuDifficulty[player - 1] >= 0 && moveNotMade{
             print("Calculating basic move...") /*DEBUG*/
             var randomNumber = 0
             var emptyCells = [Int]()
