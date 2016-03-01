@@ -17,6 +17,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZU-G2-nZS" userLabel="imageSelectOne">
+                                <rect key="frame" x="20" y="212" width="103" height="181"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CatImage" translatesAutoresizingMaskIntoConstraints="NO" id="H1i-eF-dK7" userLabel="chosenImage">
+                                        <rect key="frame" x="14" y="54" width="74" height="74"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqo-Cv-FqK">
+                                        <rect key="frame" x="14" y="136" width="74" height="37"/>
+                                        <state key="normal" title="Down"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bG-io-qRI">
+                                        <rect key="frame" x="14" y="9" width="74" height="37"/>
+                                        <state key="normal" title="Up"/>
+                                        <connections>
+                                            <action selector="imageChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="ZhS-9t-38c"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7I-hR-o6R" userLabel="imageSelectTwo">
+                                <rect key="frame" x="478" y="212" width="103" height="181"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DogImage" translatesAutoresizingMaskIntoConstraints="NO" id="eGY-CS-ZVh" userLabel="chosenImage">
+                                        <rect key="frame" x="14" y="54" width="74" height="74"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHz-SP-dAZ">
+                                        <rect key="frame" x="14" y="136" width="74" height="37"/>
+                                        <state key="normal" title="Down"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpv-px-cZU">
+                                        <rect key="frame" x="14" y="9" width="74" height="37"/>
+                                        <state key="normal" title="Up"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Tic-Tac-Toe!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cym-3T-YBc">
                                 <rect key="frame" x="143" y="82" width="315" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -73,7 +112,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1t-Vh-9XB">
-                                <rect key="frame" x="248" y="471" width="103" height="41"/>
+                                <rect key="frame" x="249" y="521" width="103" height="41"/>
                                 <color key="backgroundColor" red="1" green="0.66308949094326286" blue="0.63738912909742873" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="BEGIN">

@@ -58,4 +58,9 @@ class SetupController: UIViewController {
     @IBAction func segmentedControllerValueChanged(sender: UISegmentedControl) {
         cpuDifficulty[sender.tag] = sender.selectedSegmentIndex
     }
+    
+    @IBAction func imageChanged(sender: UIButton) {
+        //sender.superview?.subviews.count
+    }
+    
 }
