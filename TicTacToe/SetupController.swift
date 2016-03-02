@@ -10,16 +10,26 @@ import UIKit
 
 class SetupController: UIViewController {
 
+    @IBOutlet weak var imageSelectOne: UIView!
+    @IBOutlet weak var imageSelectTwo: UIView!
+    @IBOutlet weak var chosenImageOne: UIImageView!
+    @IBOutlet weak var chosenImageTwo: UIImageView!
     @IBOutlet weak var playerOneTextField: UITextField!
     @IBOutlet weak var playerTwoTextField: UITextField!
     @IBOutlet weak var playerOneSwitch: UISwitch!
     @IBOutlet weak var playerTwoSwitch: UISwitch!
     @IBOutlet weak var playerOneSegmentedController: UISegmentedControl!
     @IBOutlet weak var playerTwoSegmentedController: UISegmentedControl!
+    @IBOutlet weak var beginButton: UIButton!
     
+    //TODO: Set numbers in image options to actual values
+    let numberOfImageOptions = [2,2,2,2]
     var cpuPlayer = [false,false]
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]
+    var theme = 0
+    var imageOne = 0
+    var imageTwo = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +70,25 @@ class SetupController: UIViewController {
     }
     
     @IBAction func imageChanged(sender: UIButton) {
-        //sender.superview?.subviews.count
+        var counter = sender.tag
+        
+        //TODO: setup if statements to check for change of image to -1 or too big of a value
+        /*if imageOne == 0 && counter == -1 {
+            counter = numberOfImageOptions[theme]
+        } */
+        if sender.superview?.tag == 0 {
+            
+            chosenImageOne.image = UIImage(named: "Theme\(theme)\(imageOne + counter).png")
+        }
+        else {
+            chosenImageTwo.image = UIImage(named: "Theme\(theme)\(imageTwo + counter).png")
+        }
+        
+        
+        
+        
+        
+        beginButton.enabled = !(imageOne == imageTwo)
     }
     
 }
