@@ -23,7 +23,10 @@ class SetupController: UIViewController {
     @IBOutlet weak var beginButton: UIButton!
     @IBOutlet weak var themePlateImage: UIImageView!
     
-    //TODO: Set numbers in image options to actual values
+    //TODO: -Set numbers in image options to actual values
+    //      -Add a 2D array for all character icon choices
+    let playerImages = [[UIImage(named: "Theme0X"),UIImage(named: "Theme0O")],
+                        [UIImage(named: "Theme1X"),UIImage(named: "Theme1O")]]
     let numberOfImageOptions = [2,2,2,2]
     var cpuPlayer = [false,false]
     var cpuDifficulty = [0,0]
@@ -102,6 +105,7 @@ class SetupController: UIViewController {
         }
         themePlateImage.image = UIImage(named: "Theme\(theme)")
     }
+    
     
     
 }
