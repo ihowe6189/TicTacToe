@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="C7h-8k-r8d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="C7h-8k-r8d">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -27,6 +27,9 @@
                                     <button opaque="NO" tag="-1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqo-Cv-FqK">
                                         <rect key="frame" x="14" y="136" width="74" height="37"/>
                                         <state key="normal" title="Down"/>
+                                        <connections>
+                                            <action selector="imageChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="dxR-QL-g3F"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bG-io-qRI">
                                         <rect key="frame" x="14" y="9" width="74" height="37"/>
@@ -48,10 +51,16 @@
                                     <button opaque="NO" tag="-1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHz-SP-dAZ">
                                         <rect key="frame" x="14" y="136" width="74" height="37"/>
                                         <state key="normal" title="Down"/>
+                                        <connections>
+                                            <action selector="imageChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="Upb-jZ-5ux"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpv-px-cZU">
                                         <rect key="frame" x="14" y="9" width="74" height="37"/>
                                         <state key="normal" title="Up"/>
+                                        <connections>
+                                            <action selector="imageChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="PYq-S2-tba"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,6 +178,35 @@
                                     <action selector="segmentedControllerValueChanged:" destination="K7O-Rb-cFi" eventType="valueChanged" id="oFh-OA-DLo"/>
                                 </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g64-Yw-kQj" userLabel="themeSelect">
+                                <rect key="frame" x="131" y="416" width="339" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Theme:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wX-qr-53W">
+                                        <rect key="frame" x="129" y="0.0" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-je-Fpj">
+                                        <rect key="frame" x="63" y="19" width="212" height="41"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="-1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-nn-5GY">
+                                        <rect key="frame" x="25" y="25" width="30" height="30"/>
+                                        <state key="normal" title="L"/>
+                                        <connections>
+                                            <action selector="themeChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="G74-s8-lHh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeI-XQ-zhe" userLabel="R">
+                                        <rect key="frame" x="283" y="25" width="30" height="30"/>
+                                        <state key="normal" title="R"/>
+                                        <connections>
+                                            <action selector="themeChanged:" destination="K7O-Rb-cFi" eventType="touchUpInside" id="1GS-oC-VXF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.92549019607843142" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -185,6 +223,7 @@
                         <outlet property="playerTwoSegmentedController" destination="fkN-cz-8pA" id="tP0-3h-Pfh"/>
                         <outlet property="playerTwoSwitch" destination="0b6-Op-BNT" id="1ud-XJ-Nte"/>
                         <outlet property="playerTwoTextField" destination="QBo-GS-U3u" id="4ns-qc-4xx"/>
+                        <outlet property="themePlateImage" destination="Rcd-je-Fpj" id="hxy-DR-rB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOw-5S-gFm" userLabel="First Responder" sceneMemberID="firstResponder"/>

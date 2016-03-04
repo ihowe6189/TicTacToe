@@ -21,6 +21,7 @@ class SetupController: UIViewController {
     @IBOutlet weak var playerOneSegmentedController: UISegmentedControl!
     @IBOutlet weak var playerTwoSegmentedController: UISegmentedControl!
     @IBOutlet weak var beginButton: UIButton!
+    @IBOutlet weak var themePlateImage: UIImageView!
     
     //TODO: Set numbers in image options to actual values
     let numberOfImageOptions = [2,2,2,2]
@@ -70,14 +71,15 @@ class SetupController: UIViewController {
     }
     
     @IBAction func imageChanged(sender: UIButton) {
+        //TODO: Animate image changing
         var counter = sender.tag
-        
-        //TODO: setup if statements to check for change of image to -1 or too big of a value
-        /*if imageOne == 0 && counter == -1 {
+        if imageOne == 0 && counter == -1 {
             counter = numberOfImageOptions[theme]
-        } */
+        }
+        else if imageOne == numberOfImageOptions[theme] && counter == 1 {
+            counter = imageOne * -1
+        }
         if sender.superview?.tag == 0 {
-            
             chosenImageOne.image = UIImage(named: "Theme\(theme)\(imageOne + counter).png")
         }
         else {
@@ -90,5 +92,16 @@ class SetupController: UIViewController {
         
         beginButton.enabled = !(imageOne == imageTwo)
     }
+    @IBAction func themeChanged(sender: UIButton) {
+        theme += sender.tag
+        if theme == -1 {
+            theme = numberOfImageOptions.count - 1
+        }
+        else if theme == numberOfImageOptions.count {
+            theme = 0
+        }
+        themePlateImage.image = UIImage(named: "Theme\(theme)")
+    }
+    
     
 }
