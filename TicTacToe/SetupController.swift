@@ -23,7 +23,7 @@ class SetupController: UIViewController {
     @IBOutlet weak var beginButton: UIButton!
     @IBOutlet weak var themePlateImage: UIImageView!
     
-    //TODO: -Set numbers in image options to actual values
+    //TODO: -Set numbers in image opvarns to actual values
     //      -Add a 2D array for all character icon choices
     let playerImages = [[UIImage(named: "Theme0X"),UIImage(named: "Theme0O")],
                         [UIImage(named: "Theme1X"),UIImage(named: "Theme1O")]]
@@ -35,16 +35,19 @@ class SetupController: UIViewController {
     var imageOne = 0
     var imageTwo = 1
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //TODO: Setup segue for image assests, start with player images and then include theme n stuff
         if segue.identifier == "setupToGameplay"
         {
             let gameplayController = segue.destinationViewController as! GameplayController
             gameplayController.cpuPlayer = cpuPlayer
             gameplayController.cpuDifficulty = cpuDifficulty
             gameplayController.playerNames = playerNames
+            gameplayController.imageResources = [playerImages[theme][imageOne]!,playerImages[theme][imageTwo]!]
         }
     }
     @IBAction func textFieldEditingChanged(sender: UITextField) {

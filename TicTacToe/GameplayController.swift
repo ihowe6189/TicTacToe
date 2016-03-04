@@ -30,6 +30,7 @@ class GameplayController: UIViewController {
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]
     var tileStartingFrames = [CGRect(),CGRect()]
+    var imageResources = [UIImage()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class GameplayController: UIViewController {
         playerTwoName.text = playerNames[1]
         tileStartingFrames[0] = tileOneView.frame
         tileStartingFrames[1] = tileTwoView.frame
-        chooseStartingPlayer()
+        chooseStartingPlayer(0)
     }
 
     @IBAction func tileMoved(sender: UIPanGestureRecognizer) {
@@ -62,9 +63,13 @@ class GameplayController: UIViewController {
     }
     
     //Randomly chooses a player to start the game
-    func chooseStartingPlayer() {
-        let randomNumber = Int(arc4random_uniform(2))
-        if randomNumber == 0 {
+    func chooseStartingPlayer(player: Int) {
+        var starter = player
+        if player == 0 {
+            starter = Int(arc4random_uniform(2))
+        }
+        
+        if starter == 0 {
             playerOneTurn = true
             playerOneImage.image = UIImage(named: "selectedPlayer.png")
             playerTwoImage.image = nil
@@ -173,7 +178,13 @@ class GameplayController: UIViewController {
                 for image in self.imageViews {
                     image.image = nil
                 }
-                self.chooseStartingPlayer()
+                if winner == 1 {
+                    self.chooseStartingPlayer(2)
+                }
+                else {
+                    self.chooseStartingPlayer(1)
+                }
+                
         })
         alertController.addAction(cancelAction)
         alertController.addAction((okAction))
