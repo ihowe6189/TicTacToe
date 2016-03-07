@@ -7,7 +7,12 @@
 
     Animation code adapted from a reddit submission: https://www.reddit.com/r/swift/comments/2m4av0/adding_animated_transitions_to_images_in_swift/
 */
-//TODO: Setup animation for selected player box in gameplay, animate label change for theme
+/*TODO: 
+-Setup animation for selected player box in gameplay
+-animate label change for theme
+-animate AI moving tiles
+-take screenshot of setupStoryboard in simulator to use for launch screen image
+*/
 import Foundation
 import UIKit
 
@@ -194,6 +199,12 @@ class SetupController: UIViewController {
         animateChosenImage(chosenImageOne, counter: direction, newImage: playerImages[theme][imageOne]!)
         animateChosenImage(chosenImageTwo, counter: direction, newImage: playerImages[theme][imageTwo]!)
         beginButton.enabled = !(imageOne == imageTwo)
+        if beginButton.enabled {
+            beginButton.alpha = 1
+        }
+        else {
+            beginButton.alpha = 0.7
+        }
         themeLabel.text = themeTitles[theme]
     }
     
