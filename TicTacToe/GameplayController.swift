@@ -22,6 +22,8 @@ class GameplayController: UIViewController {
     @IBOutlet weak var playerTwoName: UILabel!
     @IBOutlet weak var tileOneView: UIView!
     @IBOutlet weak var tileTwoView: UIView!
+    @IBOutlet weak var tileOneImage: UIImageView!
+    @IBOutlet weak var tileTwoImage: UIImageView!
 
     let winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     var cellStatus = [0,0,0,0,0,0,0,0,0]
@@ -30,7 +32,7 @@ class GameplayController: UIViewController {
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]
     var tileStartingFrames = [CGRect(),CGRect()]
-    var imageResources = [UIImage()]
+    var imageResources = [UIImage(),UIImage()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,9 @@ class GameplayController: UIViewController {
         playerTwoName.text = playerNames[1]
         tileStartingFrames[0] = tileOneView.frame
         tileStartingFrames[1] = tileTwoView.frame
+        tileOneImage.image = imageResources[0]
+        tileTwoImage.image = imageResources[1]
+        
         chooseStartingPlayer(0)
     }
 
@@ -93,7 +98,7 @@ class GameplayController: UIViewController {
                 cellStatus[cell] = 1
                 for image in imageViews {
                     if image.tag == cell {
-                        image.image = UIImage(named: "CatImage.png")
+                        image.image = imageResources[0]
                     }
                 }
                 print("\(playerNames[0]) chose Cell #\(cell + 1)") /* DEBUG */
@@ -109,7 +114,7 @@ class GameplayController: UIViewController {
                 cellStatus[cell] = 2
                 for image in imageViews {
                     if image.tag == cell {
-                        image.image = UIImage(named: "DogImage.png")
+                        image.image = imageResources[1]
                     }
                 }
                 print("\(playerNames[1]) chose Cell #\(cell + 1)") /* DEBUG */

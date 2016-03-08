@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7200CCBA1C8E74AB00D47ED8 /* darktech_ldr.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7200CCB91C8E74AB00D47ED8 /* darktech_ldr.ttf */; };
+		7200CCBC1C8E757900D47ED8 /* Geomancy - Extra Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7200CCBB1C8E757900D47ED8 /* Geomancy - Extra Bold.otf */; };
 		72C63F841C7979FA009F4B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C63F831C7979FA009F4B1B /* AppDelegate.swift */; };
 		72C63F861C7979FA009F4B1B /* GameplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C63F851C7979FA009F4B1B /* GameplayController.swift */; };
 		72C63F891C7979FA009F4B1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C63F871C7979FA009F4B1B /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7200CCB91C8E74AB00D47ED8 /* darktech_ldr.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = darktech_ldr.ttf; sourceTree = "<group>"; };
+		7200CCBB1C8E757900D47ED8 /* Geomancy - Extra Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomancy - Extra Bold.otf"; sourceTree = "<group>"; };
 		72C63F801C7979FA009F4B1B /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C63F831C7979FA009F4B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72C63F851C7979FA009F4B1B /* GameplayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayController.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				72C63F8A1C7979FA009F4B1B /* Assets.xcassets */,
 				72C63F8C1C7979FA009F4B1B /* LaunchScreen.storyboard */,
 				72C63F8F1C7979FA009F4B1B /* Info.plist */,
+				7200CCB91C8E74AB00D47ED8 /* darktech_ldr.ttf */,
+				7200CCBB1C8E757900D47ED8 /* Geomancy - Extra Bold.otf */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -235,9 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7200CCBC1C8E757900D47ED8 /* Geomancy - Extra Bold.otf in Resources */,
 				72C63F8E1C7979FA009F4B1B /* LaunchScreen.storyboard in Resources */,
 				72C63F8B1C7979FA009F4B1B /* Assets.xcassets in Resources */,
 				72C63F891C7979FA009F4B1B /* Main.storyboard in Resources */,
+				7200CCBA1C8E74AB00D47ED8 /* darktech_ldr.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
