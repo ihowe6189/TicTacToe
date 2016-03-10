@@ -56,7 +56,7 @@ class GameplayController: UIViewController {
                     let newCenter = CGPoint(x: ((sender.view?.center.x)! - 150), y: ((sender.view?.center.y)! - 150))
                     if cellFrame.contains(newCenter) {
                         print("Tile stopped pan at Cell #\(cellView.tag + 1)") /*DEBUG*/
-                        processTurn(cellView.tag)
+                        processTurn(cellView.tag, animateTile: false)
                     }
                 }
             }
@@ -70,11 +70,10 @@ class GameplayController: UIViewController {
     //Randomly chooses a player to start the game
     func chooseStartingPlayer(player: Int) {
         var starter = player
-        if player == 0 {
+        if starter == 0 {
             starter = Int(arc4random_uniform(2))
         }
-        
-        if starter == 0 {
+        if starter == 1 {
             playerOneTurn = true
             playerOneImage.image = UIImage(named: "selectedPlayer.png")
             playerTwoImage.image = nil
@@ -93,15 +92,24 @@ class GameplayController: UIViewController {
     }
     //Places image in cell and changes turns
     func processTurn(cell: Int) {
+        processTurn(cell, animateTile: true)
+    }
+    func processTurn(cell: Int, animateTile: Bool) {
         if cellStatus[cell] == 0 {
             if playerOneTurn {
                 cellStatus[cell] = 1
-                for image in imageViews {
-                    if image.tag == cell {
-                        image.image = imageResources[0]
+                print("\(playerNames[0]) chose Cell #\(cell + 1)") /* DEBUG */
+                if animateTile {
+                    animateTileMove(cell)
+                }
+                else {
+                    for image in imageViews {
+                        if image.tag == cell {
+                            image.image = imageResources[0]
+                        }
                     }
                 }
-                print("\(playerNames[0]) chose Cell #\(cell + 1)") /* DEBUG */
+                //may need to cut the following code and chain to animations...
                 playerTwoImage.image = UIImage(named: "selectedPlayer.png")
                 playerOneImage.image = nil
                 playerOneTurn = false
@@ -112,12 +120,17 @@ class GameplayController: UIViewController {
             }
             else {
                 cellStatus[cell] = 2
-                for image in imageViews {
-                    if image.tag == cell {
-                        image.image = imageResources[1]
+                print("\(playerNames[1]) chose Cell #\(cell + 1)") /* DEBUG */
+                if animateTile {
+                    animateTileMove(cell)
+                }
+                else {
+                    for image in imageViews {
+                        if image.tag == cell {
+                            image.image = imageResources[1]
+                        }
                     }
                 }
-                print("\(playerNames[1]) chose Cell #\(cell + 1)") /* DEBUG */
                 playerOneImage.image = UIImage(named: "selectedPlayer.png")
                 playerTwoImage.image = nil
                 playerOneTurn = true
@@ -126,6 +139,48 @@ class GameplayController: UIViewController {
                     cpuMove(1)
                 }
             }
+        }
+    }
+    
+    func animateTileMove(tile: Int) {
+        for image in imageViews {
+            if image.tag == tile {
+                var newImage = UIImage()
+                if self.playerOneTurn {
+                    newImage = self.imageResources[0]
+                }
+                else {
+                    newImage = self.imageResources[1]
+                }
+                UIView.animateWithDuration(0.8, delay: 0, options: .CurveEaseInOut, animations: {
+                    let destinationFrameX = (image.superview?.frame.origin.x)! + 150
+                    let destinationFrameY = (image.superview?.frame.origin.y)! + 150
+                    print("Start: \(self.tileOneView.frame.origin.x), \(self.tileOneView.frame.origin.y)\nFinish: \(destinationFrameX), \(destinationFrameY)")
+                    if self.playerOneTurn {
+                        self.tileOneView.frame.origin.x = destinationFrameX
+                        self.tileOneView.frame.origin.y = destinationFrameY
+                    }
+                    else {
+                        self.tileTwoView.frame.origin.x = destinationFrameX
+                        self.tileTwoView.frame.origin.y = destinationFrameY
+                    }
+
+                    }, completion: { finished in
+                            image.image = newImage
+
+                        //implement chain animation
+                        
+                })
+            }
+        }
+    }
+    
+    func animateTileReset(tile: Int) {
+        if playerOneTurn {
+            tileOneView.frame = tileStartingFrames[0]
+            tileOneImage.image = nil
+            //Add CATransition stuf
+            
         }
     }
     

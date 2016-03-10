@@ -12,6 +12,8 @@
 -animate label change for theme
 -animate AI moving tiles
 -take screenshot of setupStoryboard in simulator to use for launch screen image
+-add pixel art assets
+-political candidates?
 */
 import Foundation
 import UIKit
@@ -40,8 +42,6 @@ class SetupController: UIViewController {
                         [UIImage(named: "Theme2X"),UIImage(named: "Theme2O")],
                         [UIImage(named: "Theme3X"),UIImage(named: "Theme3O")],
                         [UIImage(named: "Theme4BG"),UIImage(named: "Theme4EG"),UIImage(named: "Theme4H"),UIImage(named: "Theme4P"),UIImage(named: "Theme4RM"),UIImage(named: "Theme4W")]]
-    
-    //let boardImages = [UIImage(named: "Theme0Board.png"), UIImage(), UIImage(named: "Theme2Board.png"), UIImage(), UIImage()]
     let enabledArrows = [UIImage(named: "arrowBlueUp"), UIImage(named: "arrowBlueDown"), UIImage(named: "arrowRedUp"),UIImage(named: "arrowRedDown")]
     let disabledArrows = [UIImage(named: "arrowLBlueUp"), UIImage(named: "arrowLBlueDown"), UIImage(named: "arrowLRedUp"),UIImage(named: "arrowLRedDown")]
     let themeTitles = ["Classic","Woodburned","Retroactive","Pet Project","School Spirit"]
@@ -115,6 +115,12 @@ class SetupController: UIViewController {
             
             
         }
+        if beginButton.enabled {
+            beginButton.alpha = 1
+        }
+        else {
+            beginButton.alpha = 0.7
+        }
     }
     
     @IBAction func imageChanged(sender: UIButton) {
@@ -159,6 +165,12 @@ class SetupController: UIViewController {
 
         }
         beginButton.enabled = !(imageOne == imageTwo)
+        if beginButton.enabled {
+            beginButton.alpha = 1
+        }
+        else {
+            beginButton.alpha = 0.6
+        }
     }
     
     func animateChosenImage(imageToChange: UIImageView, counter: Int, newImage: UIImage){
@@ -203,9 +215,23 @@ class SetupController: UIViewController {
             beginButton.alpha = 1
         }
         else {
-            beginButton.alpha = 0.7
+            beginButton.alpha = 0.6
         }
+        //themeLabel.text = themeTitles[theme]
+        
+        let transition = CATransition()
+        transition.type = kCATransitionPush
+        if sender.tag == -1 {
+            transition.subtype = kCATransitionFromLeft
+        }
+        else {
+            transition.subtype = kCATransitionFromRight
+        }
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.5)
+        themeLabel.layer.addAnimation(transition, forKey: kCATransition)
         themeLabel.text = themeTitles[theme]
+        CATransaction.commit()
     }
     
     
