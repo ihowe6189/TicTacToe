@@ -40,11 +40,11 @@ class SetupController: UIViewController {
     let playerImages = [[UIImage(named: "Theme0X"),UIImage(named: "Theme0O")],
                         [UIImage(named: "Theme1X"),UIImage(named: "Theme1O")],
                         [UIImage(named: "Theme2X"),UIImage(named: "Theme2O")],
-                        [UIImage(named: "Theme3X"),UIImage(named: "Theme3O")],
+                        [UIImage(named: "Theme3HC"), UIImage(named: "Theme3DT"), UIImage(named: "Theme3TC"), UIImage(named: "Theme3MR"), UIImage(named: "Theme3JK"), UIImage(named: "Theme3BS")],
                         [UIImage(named: "Theme4BG"),UIImage(named: "Theme4EG"),UIImage(named: "Theme4H"),UIImage(named: "Theme4P"),UIImage(named: "Theme4RM"),UIImage(named: "Theme4W")]]
     let enabledArrows = [UIImage(named: "arrowBlueUp"), UIImage(named: "arrowBlueDown"), UIImage(named: "arrowRedUp"),UIImage(named: "arrowRedDown")]
     let disabledArrows = [UIImage(named: "arrowLBlueUp"), UIImage(named: "arrowLBlueDown"), UIImage(named: "arrowLRedUp"),UIImage(named: "arrowLRedDown")]
-    let themeTitles = ["Classic","Woodburned","Retroactive","Pet Project","School Spirit"]
+    let themeTitles = ["Classic","Woodburned","Retroactive","Delegate Dash","School Spirit"]
     var cpuPlayer = [false,false]
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]

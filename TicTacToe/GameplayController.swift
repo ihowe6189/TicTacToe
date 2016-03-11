@@ -24,6 +24,8 @@ class GameplayController: UIViewController {
     @IBOutlet weak var tileTwoView: UIView!
     @IBOutlet weak var tileOneImage: UIImageView!
     @IBOutlet weak var tileTwoImage: UIImageView!
+    @IBOutlet weak var placeholderOne: UIImageView!
+    @IBOutlet weak var placeholderTwo: UIImageView!
 
     let winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     var cellStatus = [0,0,0,0,0,0,0,0,0]
@@ -32,31 +34,50 @@ class GameplayController: UIViewController {
     var cpuDifficulty = [0,0]
     var playerNames = ["Player 1","Player 2",]
     var tileStartingFrames = [CGRect(),CGRect()]
+    var tileDisplayFrames = [CGRect(),CGRect()]
     var imageResources = [UIImage(),UIImage()]
-
+    var animationInProgress = false
+    var firstRun = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         playerOneName.text = playerNames[0]
         playerTwoName.text = playerNames[1]
         tileStartingFrames[0] = tileOneView.frame
         tileStartingFrames[1] = tileTwoView.frame
+        tileDisplayFrames[0] = tileOneView.frame
+        tileDisplayFrames[1] = tileTwoView.frame
+        tileDisplayFrames[0].origin.y += 80
+        tileDisplayFrames[1].origin.y += 80
         tileOneImage.image = imageResources[0]
         tileTwoImage.image = imageResources[1]
-        
+        tileOneView.frame = tileStartingFrames[0]
+        tileTwoView.frame = tileStartingFrames[1]
+        playerOneImage.alpha = 0
+        playerTwoImage.alpha = 0
         chooseStartingPlayer(0)
     }
 
     @IBAction func tileMoved(sender: UIPanGestureRecognizer) {
-        if(sender.view!.tag == 0 && playerOneTurn || sender.view!.tag == 1 && !playerOneTurn) {
-            let point = sender.locationInView(view)
-            sender.view?.center = CGPointMake(point.x, point.y)
-            if sender.state == UIGestureRecognizerState.Ended {
-                for cellView in cellOutlets {
-                    let cellFrame = cellView.frame
-                    let newCenter = CGPoint(x: ((sender.view?.center.x)! - 150), y: ((sender.view?.center.y)! - 150))
-                    if cellFrame.contains(newCenter) {
-                        print("Tile stopped pan at Cell #\(cellView.tag + 1)") /*DEBUG*/
-                        processTurn(cellView.tag, animateTile: false)
+        if !animationInProgress {
+            if(sender.view!.tag == 0 && playerOneTurn || sender.view!.tag == 1 && !playerOneTurn) {
+                let point = sender.locationInView(view)
+                if playerOneTurn {
+                    sender.view?.center = CGPointMake(point.x - 63, point.y - 371)
+                }
+                else {
+                    sender.view?.center = CGPointMake(point.x - 575, point.y - 371)
+                }
+                if sender.state == UIGestureRecognizerState.Ended {
+                    for cellView in cellOutlets {
+                        let cellFrame = cellView.frame
+                        let newCenter = CGPoint(x: (sender.locationInView(view).x - 235), y: (sender.locationInView(view).y - 311))
+                            print(newCenter)
+
+                        if cellFrame.contains(newCenter) {
+                            print("Tile stopped pan at Cell #\(cellView.tag + 1)") /*DEBUG*/
+                            processTurn(cellView.tag, animateTile: false)
+                        }
                     }
                 }
             }
@@ -64,7 +85,9 @@ class GameplayController: UIViewController {
     }
 
     @IBAction func cellTapped(sender: UITapGestureRecognizer) {
-        processTurn(sender.view!.tag)
+        if !animationInProgress {
+            processTurn(sender.view!.tag)
+        }
     }
     
     //Randomly chooses a player to start the game
@@ -75,19 +98,13 @@ class GameplayController: UIViewController {
         }
         if starter == 1 {
             playerOneTurn = true
-            playerOneImage.image = UIImage(named: "selectedPlayer.png")
-            playerTwoImage.image = nil
-            if(cpuPlayer[0]) {
-                cpuMove(1)
-            }
+            placeholderOne.image = imageResources[0]
+            animateTileReset()
         }
         else {
             playerOneTurn = false
-            playerOneImage.image = nil
-            playerTwoImage.image = UIImage(named: "selectedPlayer.png")
-            if(cpuPlayer[1]) {
-                cpuMove(2)
-            }
+            placeholderTwo.image = imageResources[1]
+            animateTileReset()
         }
     }
     //Places image in cell and changes turns
@@ -108,15 +125,15 @@ class GameplayController: UIViewController {
                             image.image = imageResources[0]
                         }
                     }
+                    playerOneTurn = false
+                    if !checkForWinner() {
+                        tileOneView.frame = self.tileStartingFrames[0]
+                        tileTwoView.frame = self.tileStartingFrames[1]
+                        animateTileReset()
+                        
+                    }
                 }
-                //may need to cut the following code and chain to animations...
-                playerTwoImage.image = UIImage(named: "selectedPlayer.png")
-                playerOneImage.image = nil
-                playerOneTurn = false
-                checkForWinner()
-                if(cpuPlayer[1] && !checkForWinner()) {
-                    cpuMove(2)
-                }
+
             }
             else {
                 cellStatus[cell] = 2
@@ -130,60 +147,113 @@ class GameplayController: UIViewController {
                             image.image = imageResources[1]
                         }
                     }
+                    playerOneTurn = true
+                    if !checkForWinner() {
+                        tileOneView.frame = self.tileStartingFrames[0]
+                        tileTwoView.frame = self.tileStartingFrames[1]
+                        animateTileReset()
+                    }
                 }
-                playerOneImage.image = UIImage(named: "selectedPlayer.png")
-                playerTwoImage.image = nil
-                playerOneTurn = true
-                checkForWinner()
-                if(cpuPlayer[0] && !checkForWinner()) {
-                    cpuMove(1)
-                }
+                
+//                playerTwoImage.image = nil
+//                playerOneTurn = true
+//                checkForWinner()
+//                if(cpuPlayer[0] && !checkForWinner()) {
+//                    cpuMove(1)
+//                }
             }
         }
     }
     
     func animateTileMove(tile: Int) {
+        animationInProgress = true
+        placeholderOne.alpha = 0
+        placeholderTwo.alpha = 0
         for image in imageViews {
             if image.tag == tile {
                 var newImage = UIImage()
                 if self.playerOneTurn {
                     newImage = self.imageResources[0]
+                    if self.firstRun {
+                        tileOneView.frame.origin.y += 80
+                        firstRun = false
+                    }
                 }
                 else {
                     newImage = self.imageResources[1]
+                    if self.firstRun {
+                        tileTwoView.frame.origin.y += 80
+                        firstRun = false
+                    }
                 }
-                UIView.animateWithDuration(0.8, delay: 0, options: .CurveEaseInOut, animations: {
-                    let destinationFrameX = (image.superview?.frame.origin.x)! + 150
-                    let destinationFrameY = (image.superview?.frame.origin.y)! + 150
-                    print("Start: \(self.tileOneView.frame.origin.x), \(self.tileOneView.frame.origin.y)\nFinish: \(destinationFrameX), \(destinationFrameY)")
+                
+                UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: {
+ 
                     if self.playerOneTurn {
-                        self.tileOneView.frame.origin.x = destinationFrameX
-                        self.tileOneView.frame.origin.y = destinationFrameY
+                        let newX = self.tileOneView.frame.origin.x + 146 + image.superview!.frame.origin.x
+                        let newY = self.tileOneView.frame.origin.y - 150 + image.superview!.frame.origin.y
+                        self.tileOneView.frame.origin = CGPoint(x: newX, y: newY)
                     }
                     else {
-                        self.tileTwoView.frame.origin.x = destinationFrameX
-                        self.tileTwoView.frame.origin.y = destinationFrameY
+                        let newX = self.tileTwoView.frame.origin.x - 366 + image.superview!.frame.origin.x
+                        let newY = self.tileTwoView.frame.origin.y - 152 + image.superview!.frame.origin.y
+                        self.tileTwoView.frame.origin = CGPoint(x: newX, y: newY)
                     }
 
-                    }, completion: { finished in
-                            image.image = newImage
 
-                        //implement chain animation
+                    }, completion: { finished in
+                        image.image = newImage
+                        self.animationInProgress = false
+                        if !self.checkForWinner() {
+                            self.playerOneTurn = !self.playerOneTurn
+                            self.tileOneView.frame = self.tileStartingFrames[0]
+                            self.tileTwoView.frame = self.tileStartingFrames[1]
+                            self.animateTileReset()
+                            
+                        }
                         
                 })
             }
         }
     }
     
-    func animateTileReset(tile: Int) {
+    func animateTileReset() {
         if playerOneTurn {
+            UIView.animateWithDuration(0.3, animations: {
+                self.playerOneImage.alpha = 1
+                self.playerTwoImage.alpha = 0
+            })
             tileOneView.frame = tileStartingFrames[0]
-            tileOneImage.image = nil
-            //Add CATransition stuf
+            tileOneImage.image = imageResources[0]
+            
+            UIView.animateWithDuration(0.3, delay: 0.3, options: .CurveEaseIn, animations: {
+                self.tileOneView.frame = self.tileDisplayFrames[0]
+                }, completion: { finished in
+                    if(self.cpuPlayer[0] && !self.checkForWinner()) {
+                        self.cpuMove(1)
+                    }
+            })
+            
             
         }
+        else {
+            UIView.animateWithDuration(0.3, animations: {
+                self.playerOneImage.alpha = 0
+                self.playerTwoImage.alpha = 1
+            })
+            tileTwoView.frame = tileStartingFrames[1]
+            tileTwoImage.image = imageResources[1]
+            UIView.animateWithDuration(0.3, delay: 0.3, options: .CurveEaseIn, animations: {
+                self.tileTwoView.frame = self.tileDisplayFrames[1]
+                }, completion: { finished in
+                    if(self.cpuPlayer[1] && !self.checkForWinner()) {
+                        self.cpuMove(2)
+                    }
+                    
+            })
+
+        }
     }
-    
     //Checks to see if a winning move has been made on the board
     func checkForWinner() -> Bool {
         var noWinner = true
@@ -235,9 +305,13 @@ class GameplayController: UIViewController {
             {
                 (action) -> Void in
                 self.cellStatus = [0,0,0,0,0,0,0,0,0]
+                self.animationInProgress = false
                 for image in self.imageViews {
                     image.image = nil
                 }
+                self.tileOneView.frame = self.tileStartingFrames[0]
+                self.tileTwoView.frame = self.tileStartingFrames[1]
+                
                 if winner == 1 {
                     self.chooseStartingPlayer(2)
                 }
